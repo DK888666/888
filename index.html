@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wacom数位板产品说明</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2D82B7',
+                        secondary: '#55B79D',
+                        accent: '#F4A261',
+                        light: '#F8F9FA',
+                        dark: '#343A40',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .scroll-smooth {
+                scroll-behavior: smooth;
+            }
+            .nav-active {
+                @apply bg-primary text-white;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800 scroll-smooth">
+    <!-- 顶部导航 -->
+    <header class="bg-primary text-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <h1 class="text-xl font-bold">Wacom数位板官方授权销售</h1>
+            <div class="relative w-1/3">
+                <input id="search-input" type="text" placeholder="搜索..." 
+                    class="w-full py-2 px-4 rounded-lg border-none focus:ring-2 focus:ring-accent focus:outline-none text-black placeholder-gray-400">
+                <button id="search-button" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-accent text-white p-1 rounded">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 产品型号导航 - 移到顶部 -->
+    <div class="bg-white shadow-md sticky top-16 z-40 overflow-x-auto">
+        <div class="container mx-auto px-4">
+            <div class="flex space-x-2 py-3 min-w-max">
+                <button class="product-btn whitespace-nowrap py-1 px-3 rounded hover:bg-gray-100 transition-smooth" data-target="ctl-472">
+                    CTL-472
+                </button>
+                <button class="product-btn whitespace-nowrap py-1 px-3 rounded hover:bg-gray-100 transition-smooth" data-target="ctl-672">
+                    CTL-672
+                </button>
+                <button class="product-btn whitespace-nowrap py-1 px-3 rounded hover:bg-gray-100 transition-smooth" data-target="ctl-4100">
+                    CTL-4100
+                </button>
+                <button class="product-btn whitespace-nowrap py-1 px-3 rounded hover:bg-gray-100 transition-smooth" data-target="ctl-4100wl">
+                    CTL-4100WL
+                </button>
+                <button class="product-btn whitespace-nowrap py-1 px-3 rounded hover:bg-gray-100 transition-smooth" data-target="ctl-6100">
+                    CTL-6100
+                </button>
+                <button class="product-btn whitespace-nowrap py-1 px-3 rounded hover:bg-gray-100 transition-smooth" data-target="ctl-6100wl">
+                    CTL-6100WL
+                </button>
+                <button class="product-btn whitespace-nowrap py-1 px-3 rounded hover:bg-gray-100 transition-smooth" data-target="pth-660">
+                    PTH-660
+                </button>
+                <button class="product-btn whitespace-nowrap py-1 px-3 rounded hover:bg-gray-100 transition-smooth" data-target="dtc-141">
+                    DTC-141
+                </button>
+                <button class="product-btn whitespace-nowrap py-1 px-3 rounded hover:bg-gray-100 transition-smooth" data-target="dth-271">
+                    DTH-271
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 移动端导航下拉菜单 -->
+    <div class="lg:hidden bg-white shadow-md sticky top-28 z-30">
+        <div class="container mx-auto px-4">
+            <button id="mobile-nav-toggle" class="w-full py-3 text-left font-medium flex justify-between items-center">
+                <span>目录导航</span>
+                <i class="fa fa-chevron-down transition-transform duration-300" id="mobile-nav-icon"></i>
+            </button>
+            <div id="mobile-nav-menu" class="hidden py-2 border-t">
+                <a href="#product-showcase" class="block py-2 px-4 hover:bg-gray-100 transition-smooth">
+                    <i class="fa fa-tablet mr-2 text-primary"></i>产品列表
+                </a>
+                <a href="#faq-section" class="block py-2 px-4 hover:bg-gray-100 transition-smooth">
+                    <i class="fa fa-question-circle mr-2 text-primary"></i>常见问题
+                </a>
+                <a href="#福利领取" class="block py-2 px-4 hover:bg-gray-100 transition-smooth" onclick="scrollToSection('福利领取')">
+                    <i class="fa fa-gift mr-2 text-primary"></i>福利领取
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-4 py-6 flex flex-col lg:flex-row gap-6">
+        <!-- 桌面端侧边导航 -->
+        <aside class="hidden lg:block w-56 flex-shrink-0">
+            <div class="bg-white rounded-xl shadow-md p-4 sticky top-40">
+                <h2 class="text-lg font-bold mb-4 text-primary border-b pb-2">目录导航</h2>
+                <nav class="space-y-1">
+                    <a href="#product-showcase" class="nav-link block py-2 px-4 rounded hover:bg-gray-100 transition-smooth">
+                        <i class="fa fa-tablet mr-2 text-primary"></i>产品列表
+                    </a>
+                    <a href="#faq-section" class="nav-link block py-2 px-4 rounded hover:bg-gray-100 transition-smooth">
+                        <i class="fa fa-question-circle mr-2 text-primary"></i>常见问题
+                    </a>
+                    <a href="#福利领取" class="nav-link block py-2 px-4 rounded hover:bg-gray-100 transition-smooth" onclick="scrollToSection('福利领取')">
+                        <i class="fa fa-gift mr-2 text-primary"></i>福利领取
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- 主内容区 -->
+        <div class="flex-1">
+            <!-- 搜索结果展示区 -->
+            <div id="search-results" class="mb-8 hidden">
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-xl font-bold mb-4 text-primary">
+                        <i class="fa fa-search mr-2"></i>搜索结果
+                    </h2>
+                    <p id="search-query" class="mb-4 text-gray-600"></p>
+                    <div id="results-container" class="space-y-4">
+                        <!-- 搜索结果将在这里动态显示 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 产品型号展示 -->
+            <section id="product-showcase" class="mb-12">
+                <div id="ctl-472" class="product-section hidden">
+                    <div class="bg-white rounded-xl p-6 mb-6">
+                        <h2 class="text-xl font-bold mb-4 text-primary">CTL-472 - 入门级数位板</h2>
+                        <div class="flex flex-wrap gap-6">
+                            <div class="w-full md:w-1/2 lg:w-1/3">
+                                <div class="bg-gray-50 rounded-lg p-4 h-full">
+                                    <h3 class="text-base font-semibold mb-2">基本参数</h3>
+                                    <ul class="list-disc pl-5 space-y-1">
+                                        <li>尺寸：210*146mm (小号S)</li>
+                                        <li>压感级别：4096级</li>
+                                        <li>分辨率：2540 lpi</li>
+                                        <li>读取速度：133pps</li>
+                                        <li>接口：USB-A转Micro USB</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 lg:w-2/3">
+                                <div class="bg-gray-50 rounded-lg p-4 h-full">
+                                    <h3 class="text-base font-semibold mb-2">产品特点</h3>
+                                    <ul class="list-disc pl-5 space-y-2">
+                                        <li>入门级数位板，适合初学者和学生</li>
+                                        <li>不装驱动也能控制光标移动</li>
+                                        <li>精准的压感笔，提供自然的绘画体验</li>
+                                        <li>兼容主流绘图软件如Photoshop、SAI等</li>
+                                        <li>轻巧便携，适合移动办公和创作</li>
+                                        <li>性价比高，是入门数字艺术创作的理想选择</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="ctl-672" class="product-section hidden">
+                    <div class="bg-white rounded-xl p-6 mb-6">
+                        <h2 class="text-xl font-bold mb-4 text-primary">CTL-672 - 入门级数位板</h2>
+                        <div class="flex flex-wrap gap-6">
+                            <div class="w-full md:w-1/2 lg:w-1/3">
+                                <div class="bg-gray-50 rounded-lg p-4 h-full">
+                                    <h3 class="text-base font-semibold mb-2">基本参数</h3>
+                                    <ul class="list-disc pl-5 space-y-1">
+                                        <li>尺寸：277*189mm (中号M)</li>
+                                        <li>压感级别：4096级</li>
+                                        <li>分辨率：2540 lpi</li>
+                                        <li>读取速度：133pps</li>
+                                        <li>接口：USB-A转Micro USB</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 lg:w-2/3">
+                                <div class="bg-gray-50 rounded-lg p-4 h-full">
+                                    <h3 class="text-base font-semibold mb-2">产品特点</h3>
+                                    <ul class="list-disc pl-5 space-y-2">
+                                        <li>入门级数位板，适合初学者和学生</li>
+                                        <li>不装驱动也能控制光标移动</li>
+                                        <li>比CTL-472更大的绘图区域，操作更舒适</li>
+                                        <li>精准的压感笔，提供自然的绘画体验</li>
+                                        <li>兼容主流绘图软件如Photoshop、SAI等</li>
+                                        <li>性价比高，是入门数字艺术创作的理想选择</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="ctl-4100" class="product-section hidden">
+                    <div class="bg-white rounded-xl p-6 mb-6">
+                        <h2 class="text-xl font-bold mb-4 text-primary">CTL-4100 - 中端数位板</h2>
+                        <div class="flex flex-wrap gap-6">
+                            <div class="w-full md:w-1/2 lg:w-1/3">
+                                <div class="bg-gray-50 rounded-lg p-4 h-full">
+                                    <h3 class="text-base font-semibold mb-2">基本参数</h3>
+                                    <ul class="list-disc pl-5 space-y-1">
+                                        <li>尺寸：210*160mm (小号S)</li>
+                                        <li>压感级别：4096级</li>
+                                        <li>分辨率：2540 lpi</li>
+                                        <li>读取速度：133pps</li>
+                                        <li>快捷键：4个</li>
+                                        <li>笔按键：2个</li>
+                                        <li>接口：USB-A转Micro USB</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 lg:w-2/3">
+                                <div class="bg-gray-50 rounded-lg p-4 h-full">
+                                    <h3 class="text-base font-semibold mb-2">产品特点</h3>
+                                    <ul class="list-disc pl-5 space-y-2">
+                                        <li>中端数位板，适合进阶用户</li>
+                                        <li>必须安装驱动才能正常使用</li>
+                                        <li>4096级压感，提供细腻的线条变化</li>
+                                        <li>4个可自定义快捷键，提高工作效率</li>
+                                        <li>支持Windows和Mac系统</li>
+                                        <li>支持安卓手机连接（需Android 6.0+和OTG功能）</li>
+                                        <li>附赠Wacom Creative Software Access</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="ctl-4100wl" class="product-section hidden">
+                    <div class="bg-white rounded-xl p-6 mb-6">
+                        <h2 class="text-xl font-bold mb-4 text-primary">CTL-4100WL - 中端无线数位板</h2>
+                        <div class="flex flex-wrap gap-6">
+                            <div class="w-full md:w-1/2 lg:w-1/3">
+                                <div class="bg-gray-50 rounded-lg p-4 h-full">
+                                    <h3 class="text-base font-semibold mb-2">基本参数</h3>
+                                    <ul class="list-disc pl-5 space-y-1">
+                                        <li>尺寸：210*160mm (小号S)</li>
+                                        <li>压感级别：4096级</li>
+                                        <li>分辨率：2540 lpi</li>
+                                        <li>读取速度：133pps</li>
+                                        <li>快捷键：4个</li>
+                                        <li>笔按键：2个</li>
+                                        <li>连接方式：USB或蓝牙</li>
+                                        <li>续航时间：约15小时</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 lg:w-2/3">
+                                <div class="bg-gray-50 rounded-lg p-4 h-full">
+                                    <h3 class="text-base font-semibold mb-2">产品特点</h3>
+                                    <ul class="list-disc pl-5 space-y-2">
+                                        <li>CTL-4100的无线版本，WL代表蓝牙款</li>
+                                        <li>必须安装驱动才能正常使用</li>
+                                        <li>4096级压感，提供细腻的线条变化</li>
+                                        <li>4个可自定义快捷键，提高工作效率</li>
+                                        <li>支持Windows和Mac系统</li>
+                                        <li>支持安卓手机连接（需Android 6.0+和OTG功能）</li>
+                                        <li>蓝牙连接更灵活，摆脱线缆束缚</li>
+                                        <li>附赠Wacom Creative Software Access</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="ctl-6100" class="product-section hidden">
+                    <div class="bg-white rounded-xl p-6 mb-6">
+                        <h2 class="text-xl font-bold mb-4 text-primary">CTL-6100 - 中端数位板</h2>
+                        <div class="flex flex-wrap gap-6">
+                            <div class="w-full md:w-1/2 lg:w-1/3">
+                                <div class="bg-gray-50 rounded-lg p-4 h-full">
+                                    <h3 class="text-base font-semibold mb-2">基本参数</h3>
+                                    <ul class="list-disc pl-5 space-y-1">
+                                        <li>尺寸：277*189mm (中号M)</li>
+                                        <li>压感级别：4096级</li>
+                                        <li>分辨率：2540 lpi</li>
+                                        <li>读取速度：133pps</li>
+                                        <li>快捷键：4个</li>
+                                        <li>笔按键：2个</li>
+                                        <li>接口：USB-A转Micro USB</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 lg:w-2/3">
+                                <div class="bg-gray-50 rounded-lg p-4 h-full">
+                                    <h3 class="text-base font-semibold mb-2">产品特点</h3>
+                                    <ul class="list-disc pl-5 space-y-2">
+                                        <li>中端数位板，适合进阶用户</li>
+                                        <li>必须安装驱动才能正常使用</li>
+                                        <li>4096级压感，提供细腻的线条变化</li>
+                                        <li>4个可自定义快捷键，提高工作效率</li>
+                                        <li>比CTL-4100更大的绘图区域，操作更舒适</li>
+                                        <li>支持Windows和Mac系统</li>
+                                        <li>支持安卓手机连接（需Android 6.0+和OTG功能）</li>
+                                        <li>附赠Wacom Creative Software Access</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="ctl-6100wl" class="product-section hidden">
+                    <div class="bg-white rounded-xl p-6 mb-6">
+                        <h2 class="text-xl font-bold mb-4 text-primary">CTL-6100WL - 中端无线数位板</h2>
+                        <div class="flex flex-wrap gap-6">
+                            <div class="w-full md:w-1/2 lg:w-1/3">
+                                <div class="bg-gray-50 rounded-lg p-4 h-full">
+                                    <h3 class="text-base font-semibold mb-2">基本参数</h3>
+                                    <ul class="list-disc pl-5 space-y-1">
+                                        <li>尺寸：277*189mm (中号M)</li>
+                                        <li>压感级别：4096级</li>
+                                        <li>分辨率：2540 lpi</li>
+                                        <li>读取速度：133pps</li>
+                                        <li>快捷键：4个</li>
+                                        <li>笔按键：2个</li>
+                                        <li>连接方式：USB或蓝牙</li>
+                                        <li>续航时间：约15小时</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 lg:w-2/3">
+                                <div class="bg-gray-50 rounded-lg p-4 h-full">
+                                    <h3 class="text-base font-semibold mb-2">产品特点</h3>
+                                    <ul class="list-disc pl-5 space-y-2">
+                                        <li>CTL-6100的无线版本，WL代表蓝牙款</li>
+                                        <li>必须安装驱动才能正常使用</li>
+                                        <li>4096级压感，提供细腻的线条变化</li>
+                                        <li>4个可自定义快捷键，提高工作效率</li>
+                                        <li>比CTL-4100WL更大的绘图区域，操作更舒适</li>
+                                        <li>支持Windows和Mac系统</li>
+                                        <li>支持安卓手机连接（需Android 6.0+和OTG功能）</li>
+                                        <li>蓝牙连接更灵活，摆脱线缆束缚</li>
+                                        <li>附赠Wacom Creative Software Access</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="pth-660" class="product-section hidden">
+                    <div class="bg-white rounded-xl p-6 mb-6">
+                        <h2 class="text-xl font-bold mb-4 text-primary">PTH-660 - 专业级数位板</h2>
+                        <div class="flex flex-wrap gap-6">
+                            <div class="w-full md:w-1/2 lg:w-1/3">
+                                <div class="bg-gray-50 rounded-lg p-4 h-full">
+                                    <h3 class="text-base font-semibold mb-2">基本参数</h3>
+                                    <ul class="list-disc pl-5 space-y-1">
+                                        <li>尺寸：320*207mm (中号M)</li>
+                                        <li>压感级别：8192级</li>
+                                        <li>分辨率：5080 lpi</li>
+                                        <li>读取速度：200pps</li>
+                                        <li>快捷键：8个</li>
+                                        <li>触控功能：支持</li>
+                                        <li>连接方式：USB或蓝牙</li>
+                                        <li>续航时间：约10小时</li>
+                                        <li>材质：金属材质</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 lg:w-2/3">
+                                <div class="bg-gray-50 rounded-lg p-4 h-full">
+                                    <h3 class="text-base font-semibold mb-2">产品特点</h3>
+                                    <ul class="list-disc pl-5 space-y-2">
+                                        <li>专业级数位板，适合专业设计师和艺术家</li>
+                                        <li>8192级压感，支持倾斜压感，提供更细腻的线条变化</li>
+                                        <li>200pps读取速度，5080分辨率，响应更迅速精准</li>
+                                        <li>8个可自定义快捷键，提高工作效率</li>
+                                        <li>支持触控功能，操作更直观</li>
+                                        <li>支持多指触控，可自定义手势</li>
+                                        <li>蓝牙连接稳定，续航时间长</li>
+                                        <li>金属材质，质感出众，坚固耐用</li>
+                                        <li>附赠Wacom Creative Software Access</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="dtc-141" class="product-section hidden">
+                    <div class="bg-white rounded-xl p-6 mb-6">
+                        <h2 class="text-xl font-bold mb-4 text-primary">DTC-141 - 数位屏</h2>
+                        <div class="flex flex-wrap gap-6">
+                            <div class="w-full md:w-1/2 lg:w-1/3">
+                                <div class="bg-gray-50 rounded-lg p-4 h-full">
+                                    <h3 class="text-base font-semibold mb-2">基本参数</h3>
+                                    <ul class="list-disc pl-5 space-y-1">
+                                        <li>屏幕尺寸：13.3英寸</li>
+                                        <li>分辨率：1920 x 1080</li>
+                                        <li>压感级别：4096级</li>
+                                        <li>色域：72% NTSC</li>
+                                        <li>接口：USB-C</li>
+                                        <li>触控功能：支持</li>
+                                        <li>重量：约950g</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 lg:w-2/3">
+                                <div class="bg-gray-50 rounded-lg p-4 h-full">
+                                    <h3 class="text-base font-semibold mb-2">产品特点</h3>
+                                    <ul class="list-disc pl-5 space-y-2">
+                                        <li>入门级数位屏，直接在屏幕上绘画</li>
+                                        <li>13.3英寸全高清屏幕，色彩表现出色</li>
+                                        <li>4096级压感，提供自然的绘画体验</li>
+                                        <li>支持触控功能，操作更直观</li>
+                                        <li>轻薄便携，适合移动办公和创作</li>
+                                        <li>单USB-C接口，连接简单方便</li>
+                                        <li>兼容Windows和Mac系统</li>
+                                        <li>支持主流绘图软件如Photoshop、SAI等</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="dth-271" class="product-section hidden">
+                    <div class="bg-white rounded-xl p-6 mb-6">
+                        <h2 class="text-xl font-bold mb-4 text-primary">DTH-271 - 专业级数位屏</h2>
+                        <div class="flex flex-wrap gap-6">
+                            <div class="w-full md:w-1/2 lg:w-1/3">
+                                <div class="bg-gray-50 rounded-lg p-4 h-full">
+                                    <h3 class="text-base font-semibold mb-2">基本参数</h3>
+                                    <ul class="list-disc pl-5 space-y-1">
+                                        <li>屏幕尺寸：27英寸</li>
+                                        <li>分辨率：3840 x 2160 (4K)</li>
+                                        <li>压感级别：8192级</li>
+                                        <li>色域：95% DCI-P3</li>
+                                        <li>接口：USB-C, HDMI, DisplayPort</li>
+                                        <li>触控功能：支持</li>
+                                        <li>快捷键：8个</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 lg:w-2/3">
+                                <div class="bg-gray-50 rounded-lg p-4 h-full">
+                                    <h3 class="text-base font-semibold mb-2">产品特点</h3>
+                                    <ul class="list-disc pl-5 space-y-2">
+                                        <li>专业级数位屏，适合专业设计师和艺术家</li>
+                                        <li>27英寸4K超高清屏幕，细节表现出色</li>
+                                        <li>8192级压感，支持倾斜压感，提供更细腻的线条变化</li>
+                                        <li>95% DCI-P3广色域，色彩还原准确</li>
+                                        <li>支持触控功能，操作更直观</li>
+                                        <li>8个可自定义快捷键，提高工作效率</li>
+                                        <li>兼容Windows和Mac系统</li>
+                                        <li>支持主流绘图软件如Photoshop、SAI等</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 常见问题解答 -->
+            <section id="faq-section" class="mb-12">
+                <div class="bg-white rounded-xl p-6">
+                    <h2 class="text-xl font-bold mb-6 text-primary">常见问题解答</h2>
+                    
+                    <div class="space-y-4">
+                        <!-- 驱动下载 -->
+                        <div class="faq-item bg-gray-50 rounded-lg p-4">
+                            <h3 class="text-base font-semibold mb-2 text-primary">驱动下载</h3>
+                            <p class="mb-2">Wacom官方驱动下载网址（注意分WIN系统和MAC系统2种，请按系统对应下载电脑系统版本的驱动）：</p>
+                            <p><a href="https://www.wacom.com/zh-cn/support/product-support/drivers" target="_blank" class="text-blue-600 hover:underline">https://www.wacom.com/zh-cn/support/product-support/drivers</a></p>
+                            
+                            <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="bg-blue-50 p-3 rounded-lg">
+                                    <h4 class="font-semibold mb-2">Windows驱动：</h4>
+                                    <p class="mb-1"><strong>win7驱动：</strong><a href="https://pan.baidu.com/s/1d3rfgX2BtI8mMR6pvvvHWg" target="_blank" class="text-blue-600 hover:underline">https://pan.baidu.com/s/1d3rfgX2BtI8mMR6pvvvHWg</a> 提取码：yqep</p>
+                                    <p><strong>win10/win11驱动：</strong><a href="https://pan.baidu.com/s/11OpaBWgQM_cRBjj34pU9YA?pwd=nv5g" target="_blank" class="text-blue-600 hover:underline">https://pan.baidu.com/s/11OpaBWgQM_cRBjj34pU9YA?pwd=nv5g</a> 提取码：nv5g</p>
+                                </div>
+                                
+                                <div class="bg-blue-50 p-3 rounded-lg">
+                                    <h4 class="font-semibold mb-2">Mac驱动：</h4>
+                                    <p class="mb-1"><strong>mac10.11--10.12系统：</strong><a href="https://pan.baidu.com/s/1akuFGC92phta-NH27pc-Sw?pwd=3mvd" target="_blank" class="text-blue-600 hover:underline">https://pan.baidu.com/s/1akuFGC92phta-NH27pc-Sw?pwd=3mvd</a> 提取码：3mvd</p>
+                                    <p class="mb-1"><strong>mac10.13--10.14系统：</strong><a href="https://pan.baidu.com/s/1H2_40yQxIpLhbhlv7lpBtQ?pwd=lj6o" target="_blank" class="text-blue-600 hover:underline">https://pan.baidu.com/s/1H2_40yQxIpLhbhlv7lpBtQ?pwd=lj6o</a> 提取码：lj6o</p>
+                                    <p><strong>mac10.15--13系统：</strong><a href="https://pan.baidu.com/s/1bdwS8m7Tb8iP2NVmw7RG9A?pwd=hmjr" target="_blank" class="text-blue-600 hover:underline">https://pan.baidu.com/s/1bdwS8m7Tb8iP2NVmw7RG9A?pwd=hmjr</a> 提取码：hmjr</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 产品兼容性 -->
+                        <div class="faq-item bg-gray-50 rounded-lg p-4">
+                            <h3 class="text-base font-semibold mb-2 text-primary">产品兼容性</h3>
+                            <p class="mb-2">Wacom Intuos 4100/6100(WL) 兼容安卓手机的条件：</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Android 6.0 及以上</li>
+                                <li>直板手机具备 OTG 功能（可以是 MicroUSB/USB-C 接口）</li>
+                                <li>有线连接非蓝牙连接</li>
+                            </ul>
+                            
+                            <p class="mt-4 mb-2">CTL-672是入门级数位板，不装驱动笔也能控制光标移动，但CTL-4100必须要电脑有安装驱动，等驱动识别了笔才能替代鼠标操作的呢</p>
+                        </div>
+                        
+                        <!-- 压感和性能 -->
+                        <div class="faq-item bg-gray-50 rounded-lg p-4">
+                            <h3 class="text-base font-semibold mb-2 text-primary">压感和性能</h3>
+                            <p class="mb-2">中端的板子是CTL-4100，4100WL，6100，6100WL，压感 是4096,WL是蓝牙款</p>
+                            <p class="mb-2">高端的是PTH-660，压感 是8192,可触控，可蓝牙</p>
+                            <p class="mb-2">压感越高越好，8192级压感支持倾斜压感</p>
+                            
+                            <div class="mt-4 bg-blue-50 p-3 rounded-lg">
+                                <p class="font-semibold mb-1">PTH-660专业级别详细参数：</p>
+                                <p>压感、反应速度高四倍的数位板，金属材质，8192级压感更灵敏，200每秒的反映速度，5080分辨率，都是升级的最高配制，无线蓝牙链接更稳定，超长续航10个小时，支持多指数控，8个按键控制都是升级的最高配制，使创作更加得心应手！</p>
+                            </div>
+                        </div>
+                        
+                        <!-- 软件设置 -->
+                        <div class="faq-item bg-gray-50 rounded-lg p-4">
+                            <h3 class="text-base font-semibold mb-2 text-primary">软件设置</h3>
+                            <p class="mb-2">数位板属性-应用程序最右侧 加号-选择软件书写添加，然后软件退出重新开启测试，是否正常</p>
+                            <p class="mb-2">新建或者打开word-在上面任务栏选择审阅或者绘图-选择画笔或者墨迹书写--接下来可以书写或者标注</p>
+                            <p class="mb-2">快捷键设置win 电脑：屏幕左下角-开始-wacom数位板- 数位板属性-功能-快捷键设置</p>
+                            <p class="mb-2">【画图】请点击电脑【开始】菜单>找到（Windows 附件）找到 画图，请尝试使用这个软件测试一下</p>
+                        </div>
+                        
+                        <!-- 设备诊断 -->
+                        <div class="faq-item bg-gray-50 rounded-lg p-4">
+                            <h3 class="text-base font-semibold mb-2 text-primary">设备诊断</h3>
+                            <p class="mb-2">左下角关于-诊断。手握笔，距离设备表面 10 mm的范围内，您应会看到感应区、设备名称、设备类型和设备 S/N（序列号）后出现一个值。沿着设备表面移动压感笔。移动笔时，X 数据和Y 数据值应改变。使用笔尖按压表面，按压表面时，如果您使用最高压力按压表面，笔压压力值应会从大约 0% 改变为大约 100%。开关后面会显示1。</p>
+                            <p>win 电脑：屏幕左下角-开始-wacom数位板- wacom center-设备-压感笔设定-数位板属性-左下角关于-诊断</p>
+                        </div>
+                        
+                        <!-- 常见问题排查 -->
+                        <div class="faq-item bg-gray-50 rounded-lg p-4">
+                            <h3 class="text-base font-semibold mb-2 text-primary">常见问题排查</h3>
+                            
+                            <div class="mb-4">
+                                <h4 class="font-semibold mb-1">PS偶尔无压感解决方法：</h4>
+                                <ol class="list-decimal pl-5 space-y-1">
+                                    <li>所有程序">"Wacom 数位板" 文件夹>"Wacom桌面中心>备份设置>重置设置>确定</li>
+                                    <li>打开wacom数位板属性-工具-笔-映射-“使用Windows ink功能”重新勾选</li>
+                                    <li>数位板属性--笔—“双击时笔尖间距”选择关闭</li>
+                                    <li>Windows电脑控制面板-笔和触控-笔选项-长按-设置-“将长按用作右键单击”打钩去掉</li>
+                                    <li>重装驱动。</li>
+                                </ol>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h4 class="font-semibold mb-1">驱动服务检查：</h4>
+                                <p>请您用键盘上的组合键进入任务管理器：Ctr+Alt+Del启动任务管理器，在服务内，查看Wacom的选项（描述-Wacom professional service）是否被禁止了，如果停用，请鼠标右键选择启用，或者停用后重新启动尝试。</p>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h4 class="font-semibold mb-1">驱动卸载方法：</h4>
+                                <p>WIN:控制面板-程序和功能-WACOM数位板-双击卸载</p>
+                                <p>MAC:前往-应用程序-WACOM数位板文件夹-WACOM数位板工具解锁-卸载</p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-semibold mb-1">驱动安装失败解决方法：</h4>
+                                <p>卸载后重启，关闭杀毒软件，打开【我的电脑】-管理-服务与应用程序-服务-Device Install Service-右键属性【常规】里的【启动类型】-选自动-然后启动，再装驱动后重启就好了_(:з」∠)_win10</p>
+                            </div>
+                        </div>
+                        
+                        <!-- MAC系统设置 -->
+                        <div class="faq-item bg-gray-50 rounded-lg p-4">
+                            <h3 class="text-base font-semibold mb-2 text-primary">MAC系统设置</h3>
+                            <p class="mb-2">请先确认MAC电脑系统版本，电脑桌面>小苹果图标>关于本机>MACOS系统版本。</p>
+                            <p class="mb-2">如果是14的，您请至「系统设置」，并选择「隐私与安全性」>「辅助功能」，这里勾选添加wacom的文件</p>
+                            <p class="mb-2">Mac电脑，系统设置>通用>登录项，确保与wacom相关的文件允许在后台运行。电脑如果有清理类软件【腾讯柠檬，Clean my mac，cleaner one pro】，请确保软件里与wacom相关的文件允许在后台运行。</p>
+                            <p>请您至电脑的 账户设置>通用>登录项，确认Wacom选项开启 ；请您在登录项页面，点击上方小+号，再放大镜处搜索"wacom"，把搜到的全部添加进来</p>
+                        </div>
+                        
+                        <!-- 其他常见问题 -->
+                        <div class="faq-item bg-gray-50 rounded-lg p-4">
+                            <h3 class="text-base font-semibold mb-2 text-primary">其他常见问题</h3>
+                            <p class="mb-2">CTL-4100这个型号带有4个快捷键，笔上有2个。PTH-660数位板带有8个快捷键</p>
+                            <p class="mb-2">充电口是 Micro USB 阶梯口的</p>
+                            <p class="mb-2">数位板不是数位屏，显示不了画面呢</p>
+                            <p class="mb-2">4100wl 和6100 wl 就是大小不同</p>
+                            <p class="mb-2">4100的用户手册：<a href="http://101.wacom.com/UserHelp/zh_cn/TOC/CTL-4100wl.html" target="_blank" class="text-blue-600 hover:underline">http://101.wacom.com/UserHelp/zh_cn/TOC/CTL-4100wl.html</a></p>
+                            <p class="mb-2">夹纸绘图的操作：<a href="https://www.wacom.com/zh-cn/getting-started/wacom-intuos-pro-paper-edition" target="_blank" class="text-blue-600 hover:underline">https://www.wacom.com/zh-cn/getting-started/wacom-intuos-pro-paper-edition</a></p>
+                            <p class="mb-2">贴膜如何贴：把贴膜放在板子上面，对准四个角，然后把侧面的胶条撕掉贴上就可以了。左右不需要区分，按照个人喜欢来贴就好。</p>
+                            <p>全国售后技术服务热线电话4008105460，早上9点到下午6点。谢谢</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 福利领取区 -->
+            <section id="福利领取" class="mb-12">
+                <div class="bg-white rounded-xl p-6">
+                    <h2 class="text-xl font-bold mb-6 text-primary">福利领取区</h2>
+                    
+                    <div class="bg-gray-50 rounded-lg p-5 mb-6">
+                        <div class="flex items-center justify-center mb-4">
+                            <div class="bg-primary text-white text-lg font-bold py-2 px-6 rounded-full shadow-sm">
+                                售后技术支持
+                            </div>
+                        </div>
+                        <div class="text-center mb-6">
+                            <p class="text-xl font-bold text-primary">全国售后技术服务热线</p>
+                            <p class="text-2xl font-bold text-primary mt-2">4008105460</p>
+                            <p class="text-gray-600 mt-1">服务时间：早上9点到下午6点</p>
+                        </div>
+                        
+                        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
+                            <p class="font-bold text-yellow-700">温馨提示：</p>
+                            <p class="text-yellow-700">需要哪个就下载哪个，不要全部都下载安装了，电脑运行内存不够的会卡死的，一般都不会全部都用的</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- 设计软件 -->
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <h3 class="text-base font-semibold mb-3 text-primary">设计软件</h3>
+                            <ul class="space-y-3">
+                                <li>
+                                    <p class="font-medium">PS2020：</p>
+                                    <a href="https://pan.baidu.com/s/1KvDJ7ZIZIz11P08-CrBKvQ" target="_blank" class="text-blue-600 hover:underline">https://pan.baidu.com/s/1KvDJ7ZIZIz11P08-CrBKvQ</a>
+                                    <p class="text-gray-600 text-sm">提取码：lg38</p>
+                                </li>
+                                <li>
+                                    <p class="font-medium">PS2023版本：</p>
+                                    <a href="https://pan.baidu.com/s/1kszS9F8oPG5fb8uUeT9cHw" target="_blank" class="text-blue-600 hover:underline">https://pan.baidu.com/s/1kszS9F8oPG5fb8uUeT9cHw</a>
+                                    <p class="text-gray-600 text-sm">提取码：xd2a</p>
+                                </li>
+                                <li>
+                                    <p class="font-medium">CSP下载安装包：</p>
+                                    <a href="https://pan.baidu.com/s/1flkTe7tKxMHaQHQFrEQBSw?pwd=6789" target="_blank" class="text-blue-600 hover:underline">https://pan.baidu.com/s/1flkTe7tKxMHaQHQFrEQBSw?pwd=6789</a>
+                                    <p class="text-gray-600 text-sm">提取码：6789</p>
+                                </li>
+                                <li>
+                                    <p class="font-medium">Win系统AI下载：</p>
+                                    <a href="https://pan.baidu.com/s/1TsbSxwGnmzNRlf2rXWoW4Q" target="_blank" class="text-blue-600 hover:underline">https://pan.baidu.com/s/1TsbSxwGnmzNRlf2rXWoW4Q</a>
+                                    <p class="text-gray-600 text-sm">提取码：irqm</p>
+                                </li>
+                                <li>
+                                    <p class="font-medium">PR安装包：</p>
+                                    <a href="https://pan.baidu.com/s/1gPX9Ba4chCrTo86ODkIbVg?pwd=455h" target="_blank" class="text-blue-600 hover:underline">https://pan.baidu.com/s/1gPX9Ba4chCrTo86ODkIbVg?pwd=455h</a>
+                                    <p class="text-gray-600 text-sm">提取码：455h</p>
+                                </li>
+                                <li>
+                                    <p class="font-medium">SAI2终极版（双击安装）：</p>
+                                    <a href="https://pan.baidu.com/s/1NeEs1aC3FjtnjtYr5Lt3og?pwd=8888" target="_blank" class="text-blue-600 hover:underline">https://pan.baidu.com/s/1NeEs1aC3FjtnjtYr5Lt3og?pwd=8888</a>
+                                    <p class="text-gray-600 text-sm">提取码：8888</p>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- 笔刷素材 -->
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <h3 class="text-base font-semibold mb-3 text-primary">笔刷素材</h3>
+                            <ul class="space-y-3">
+                                <li>
+                                    <p class="font-medium">PS，SAI，AI笔刷：</p>
+                                    <a href="https://pan.baidu.com/s/1YGMqPqgCCzsvNbrjwwOHJg" target="_blank" class="text-blue-600 hover:underline">https://pan.baidu.com/s/1YGMqPqgCCzsvNbrjwwOHJg</a>
+                                    <p class="text-gray-600 text-sm">提取码：1111</p>
+                                </li>
+                                <li>
+                                    <p class="font-medium">超酷火焰PS笔刷.zip：</p>
+                                    <a href="https://pan.baidu.com/s/12OarTCXn6usX60YjTj6q6g" target="_blank" class="text-blue-600 hover:underline">https://pan.baidu.com/s/12OarTCXn6usX60YjTj6q6g</a>
+                                    <p class="text-gray-600 text-sm">提取码：1111</p>
+                                </li>
+                                <li>
+                                    <p class="font-medium">植物树叶PS笔刷素材.zip：</p>
+                                    <a href="https://pan.baidu.com/s/12WBT_YG-OfSxfhug5qFZ-w" target="_blank" class="text-blue-600 hover:underline">https://pan.baidu.com/s/12WBT_YG-OfSxfhug5qFZ-w</a>
+                                    <p class="text-gray-600 text-sm">提取码：1111</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- 配件推荐 -->
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <h3 class="text-base font-semibold mb-3 text-primary">配件推荐</h3>
+                            <ul class="space-y-3">
+                                <li>
+                                    <p class="font-medium">延长线：</p>
+                                    <a href="https://mobile.yangkeduo.com/goods.html?goods_id=661171859138&refer_page_app=mms&refer_page_name=mms_goods_list_new&refer_page_id=10357_1729561960703_2880291078" target="_blank" class="text-blue-600 hover:underline">https://mobile.yangkeduo.com/goods.html?goods_id=661171859138...</a>
+                                    <p class="text-gray-600 text-sm">我们经常去他家买来做测试，质量不错，可以直接在这里购买</p>
+                                </li>
+                                <li>
+                                    <p class="font-medium">传输数据线：</p>
+                                    <a href="https://mobile.yangkeduo.com/goods.html?goods_id=661169757407&refer_page_app=mms&refer_page_name=mms_goods_list_new&refer_page_id=10357_1729561960703_2880291078" target="_blank" class="text-blue-600 hover:underline">https://mobile.yangkeduo.com/goods.html?goods_id=661169757407...</a>
+                                    <p class="text-gray-600 text-sm">传输数据线链接，我们经常在这里采购回来做测试，质量很好，建议这里购买</p>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- 技巧教程 -->
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <h3 class="text-base font-semibold mb-3 text-primary">技巧教程</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <h4 class="font-medium">AI调压感的方式：</h4>
+                                    <p class="text-gray-700 text-sm">先按B切换到画笔工具，再点击上面"工具属性栏"的画笔笔头列表的"小下三角号"，再点击"新增画笔笔头"按钮，弹出"新建画笔"对话框，再点击"确定"，又弹出"书法画笔选项"对话框，再调整下面的"直径"大小，然后将右侧改为"压力"，再将最右侧的"变量"改为最大（当然也可以根据你的需要更改）。这时再点击"确定"就行了</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-xl font-bold">Wacom数位板官方授权销售</h2>
+                    <p class="text-gray-400 mt-2">专业的数位板销售与技术支持</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-white hover:text-accent transition-smooth"><i class="fa fa-weixin fa-2x"></i></a>
+                    <a href="#" class="text-white hover:text-accent transition-smooth"><i class="fa fa-weibo fa-2x"></i></a>
+                    <a href="#" class="text-white hover:text-accent transition-smooth"><i class="fa fa-qq fa-2x"></i></a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-6 pt-6 text-center text-gray-400">
+                <p>© 2025 Wacom数位板官方授权销售. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 搜索功能
+        document.getElementById('search-button').addEventListener('click', function() {
+            performSearch();
+        });
+        
+        document.getElementById('search-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+        
+        // 高亮文本函数
+        function highlightText(text, searchTerms) {
+            if (!searchTerms || searchTerms.length === 0) return text;
+            
+            // 创建一个正则表达式，匹配所有搜索词
+            const regex = new RegExp(`(${searchTerms.join('|')})`, 'gi');
+            return text.replace(regex, '<span class="bg-yellow-200">$1</span>');
+        }
+        
+        // 清除所有高亮
+        function clearHighlights() {
+            document.querySelectorAll('.bg-yellow-200').forEach(el => {
+                const parent = el.parentNode;
+                parent.replaceChild(document.createTextNode(el.textContent), el);
+                parent.normalize();
+            });
+        }
+        
+        // 计算文本与搜索词的匹配度
+        function calculateMatchScore(text, searchTerms, isTitle = false) {
+            let score = 0;
+            const lowerText = text.toLowerCase();
+            
+            // 基础权重
+            const baseWeight = isTitle ? 3 : 1;
+            
+            // 检查每个搜索词
+            searchTerms.forEach(term => {
+                const lowerTerm = term.toLowerCase();
+                
+                // 完全匹配权重最高
+                if (lowerText === lowerTerm) {
+                    score += 10 * baseWeight;
+                } 
+                // 单词匹配
+                else if (new RegExp(`\\b${lowerTerm}\\b`, 'gi').test(lowerText)) {
+                    score += 5 * baseWeight;
+                } 
+                // 部分匹配
+                else if (lowerText.includes(lowerTerm)) {
+                    score += 2 * baseWeight;
+                }
+            });
+            
+            return score;
+        }
+        
+        function performSearch() {
+            const searchInput = document.getElementById('search-input').value.trim();
+            if (!searchInput) {
+                clearHighlights();
+                document.getElementById('search-results').classList.add('hidden');
+                return;
+            }
+            
+            // 清除之前的高亮
+            clearHighlights();
+            
+            // 将搜索词拆分为多个关键词
+            const searchTerms = searchInput.toLowerCase().split(/\s+/).filter(term => term.length > 0);
+            
+            // 搜索结果数组
+            const results = [];
+            
+            // 搜索产品部分
+            const productSections = document.querySelectorAll('.product-section');
+            productSections.forEach(section => {
+                const sectionText = section.textContent.toLowerCase();
+                
+                // 检查是否包含任何一个搜索词
+                const matchesAnyTerm = searchTerms.some(term => sectionText.includes(term));
+                if (!matchesAnyTerm) return;
+                
+                const productId = section.id;
+                const productTitle = section.querySelector('h2').textContent;
+                
+                // 计算匹配度
+                const titleScore = calculateMatchScore(productTitle, searchTerms, true);
+                const contentScore = calculateMatchScore(sectionText, searchTerms);
+                const totalScore = titleScore + contentScore;
+                
+                // 找到包含搜索词的段落
+                const contentElements = section.querySelectorAll('li, p');
+                let matchingContent = '';
+                
+                contentElements.forEach(el => {
+                    if (searchTerms.some(term => el.textContent.toLowerCase().includes(term))) {
+                        matchingContent += `<p class="text-sm mb-2">${highlightText(el.textContent, searchTerms)}</p>`;
+                    }
+                });
+                
+                results.push({
+                    type: 'product',
+                    id: productId,
+                    title: productTitle,
+                    content: matchingContent,
+                    score: totalScore
+                });
+            });
+            
+            // 搜索FAQ部分
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const itemText = item.textContent.toLowerCase();
+                
+                // 检查是否包含任何一个搜索词
+                const matchesAnyTerm = searchTerms.some(term => itemText.includes(term));
+                if (!matchesAnyTerm) return;
+                
+                const faqTitle = item.querySelector('h3').textContent;
+                
+                // 计算匹配度
+                const titleScore = calculateMatchScore(faqTitle, searchTerms, true);
+                const contentScore = calculateMatchScore(itemText, searchTerms);
+                const totalScore = titleScore + contentScore;
+                
+                // 找到包含搜索词的段落
+                const contentElements = item.querySelectorAll('p, li');
+                let matchingContent = '';
+                
+                contentElements.forEach(el => {
+                    if (searchTerms.some(term => el.textContent.toLowerCase().includes(term))) {
+                        matchingContent += `<p class="text-sm mb-2">${highlightText(el.textContent, searchTerms)}</p>`;
+                    }
+                });
+                
+                results.push({
+                    type: 'faq',
+                    title: faqTitle,
+                    content: matchingContent,
+                    score: totalScore
+                });
+            });
+            
+            // 搜索福利领取区
+            const福利领取 = document.getElementById('福利领取');
+            if (福利领取) {
+                const sectionText = 福利领取.textContent.toLowerCase();
+                
+                // 检查是否包含任何一个搜索词
+                const matchesAnyTerm = searchTerms.some(term => sectionText.includes(term));
+                if (matchesAnyTerm) {
+                    const sectionTitle = 福利领取.querySelector('h2').textContent;
+                    
+                    // 计算匹配度
+                    const titleScore = calculateMatchScore(sectionTitle, searchTerms, true);
+                    const contentScore = calculateMatchScore(sectionText, searchTerms);
+                    const totalScore = titleScore + contentScore;
+                    
+                    // 找到包含搜索词的段落
+                    const contentElements = 福利领取.querySelectorAll('p, li, a, h3');
+                    let matchingContent = '';
+                    
+                    contentElements.forEach(el => {
+                        if (searchTerms.some(term => el.textContent.toLowerCase().includes(term))) {
+                            matchingContent += `<p class="text-sm mb-2">${highlightText(el.textContent, searchTerms)}</p>`;
+                        }
+                    });
+                    
+                    results.push({
+                        type: '福利领取',
+                        title: sectionTitle,
+                        content: matchingContent,
+                        score: totalScore
+                    });
+                }
+            }
+            
+            // 按匹配度排序，分数高的排在前面
+            results.sort((a, b) => b.score - a.score);
+            
+            // 显示搜索结果
+            displaySearchResults(results, searchInput);
+        }
+        
+        function displaySearchResults(results, searchTerm) {
+            const resultsContainer = document.getElementById('results-container');
+            const searchResultsSection = document.getElementById('search-results');
+            const searchQueryEl = document.getElementById('search-query');
+            
+            // 更新搜索词显示
+            searchQueryEl.textContent = `您搜索的关键词: "${searchTerm}"`;
+            
+            // 清空结果容器
+            resultsContainer.innerHTML = '';
+            
+            if (results.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div class="text-center py-6">
+                        <i class="fa fa-search fa-3x text-gray-300 mb-3"></i>
+                        <p class="text-gray-500">未找到相关内容，请尝试其他关键词</p>
+                    </div>
+                `;
+            } else {
+                results.forEach(result => {
+                    let resultElement = document.createElement('div');
+                    resultElement.className = 'bg-gray-50 p-4 rounded-lg shadow-sm';
+                    
+                    let typeIcon = '';
+                    let typeClass = '';
+                    
+                    switch(result.type) {
+                        case 'product':
+                            typeIcon = '<i class="fa fa-tablet mr-2"></i>';
+                            typeClass = 'text-primary';
+                            break;
+                        case 'faq':
+                            typeIcon = '<i class="fa fa-question-circle mr-2"></i>';
+                            typeClass = 'text-secondary';
+                            break;
+                        case '福利领取':
+                            typeIcon = '<i class="fa fa-gift mr-2"></i>';
+                            typeClass = 'text-red-500';
+                            break;
+                    }
+                    
+                    resultElement.innerHTML = `
+                        <div class="flex items-center mb-2">
+                            <span class="text-sm font-medium ${typeClass}">${typeIcon}${result.title}</span>
+                        </div>
+                        <div class="ml-6">
+                            ${result.content}
+                        </div>
+                        <button class="mt-3 text-blue-600 hover:underline text-sm flex items-center" 
+                                onclick="scrollToSection('${result.id || result.type}')">
+                            <i class="fa fa-arrow-right mr-1"></i>查看详情
+                        </button>
+                    `;
+                    
+                    resultsContainer.appendChild(resultElement);
+                });
+            }
+            
+            // 显示搜索结果区域
+            searchResultsSection.classList.remove('hidden');
+            searchResultsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function scrollToSection(sectionId) {
+            // 清除高亮
+            clearHighlights();
+            
+            // 隐藏搜索结果
+            document.getElementById('search-results').classList.add('hidden');
+            
+            // 滚动到对应区域
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+                
+                // 如果是产品，显示对应产品
+                if (section.classList.contains('product-section')) {
+                    showProduct(sectionId);
+                }
+            }
+        }
+        
+        // 产品展示切换
+        function showProduct(productId) {
+            // 隐藏所有产品
+            document.querySelectorAll('.product-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // 显示选中产品
+            const productSection = document.getElementById(productId);
+            if (productSection) {
+                productSection.classList.remove('hidden');
+                productSection.scrollIntoView({ behavior: 'smooth' });
+                
+                // 更新按钮状态
+                document.querySelectorAll('.product-btn').forEach(btn => {
+                    if (btn.getAttribute('data-target') === productId) {
+                        btn.classList.add('bg-primary', 'text-white');
+                    } else {
+                        btn.classList.remove('bg-primary', 'text-white');
+                    }
+                });
+            }
+        }
+        
+        // 产品按钮点击事件
+        document.querySelectorAll('.product-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const target = this.getAttribute('data-target');
+                showProduct(target);
+            });
+        });
+        
+        // 移动端导航菜单切换
+        document.getElementById('mobile-nav-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-nav-menu');
+            const icon = document.getElementById('mobile-nav-icon');
+            
+            menu.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        });
+        
+        // 滚动监听，高亮当前导航项
+        function setupScrollSpy() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            function highlightNavLink() {
+                let scrollY = window.pageYOffset;
+                
+                sections.forEach(section => {
+                    const sectionHeight = section.offsetHeight;
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionId = section.getAttribute('id');
+                    
+                    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('nav-active');
+                            if (link.getAttribute('href') === `#${sectionId}`) {
+                                link.classList.add('nav-active');
+                            }
+                        });
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', highlightNavLink);
+            highlightNavLink(); // 初始化
+        }
+        
+        // 默认显示第一个产品
+        document.addEventListener('DOMContentLoaded', function() {
+            showProduct('ctl-472');
+            setupScrollSpy();
+        });
+    </script>
+</body>
+</html>
